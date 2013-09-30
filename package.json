@@ -16,6 +16,6 @@
 	"license": "MIT",
 	"dependencies": [
 		"underscore",
-		"coffee-script"
+		"twitter"
 	]
 }
