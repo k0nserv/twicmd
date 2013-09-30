@@ -1,0 +1,17 @@
+{
+	"name": "twicmd",
+	"version": "0.0.1",
+	"author": {
+		"name": "Hugo Tunius"
+	},
+	"scripts": {
+	},
+	"description": "Send commands to your server with twitter",
+	"keywords": [
+		"twitter",
+		"command",
+		"remote",
+		"server"
+	],
+	"license": "MIT"
+}
