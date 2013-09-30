@@ -13,5 +13,9 @@
 		"remote",
 		"server"
 	],
-	"license": "MIT"
+	"license": "MIT",
+	"dependencies": [
+		"underscore",
+		"coffee-script"
+	]
 }
