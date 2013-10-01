@@ -35,7 +35,7 @@ twicmd.addCommand("rs", function () {
 
 twicmd.start();
 
-setInterva(funciton() {},5000); //Prevent process shutdown
+setInterval(function() {},5000); //Prevent process shutdown
 ```
 
 ###Coffeescript
@@ -46,7 +46,7 @@ TwiCmd  = require("twicmd")
 twicmd = new TwiCmd
                 tweeters: ["xxxxxxxxxxx"] #Numerical twitter ids
                 commands:
-                        test: ->    #Availiable command triggd by #test
+                        test: ->    #Available command triggered by #test
                             console.log "Test"
                 consumerKey: "Consumer key here"
                 consumerSecret: "Consumer secret here"
@@ -63,6 +63,42 @@ twicmd.start()
 
 setInterval (->), 5000 #Prevent process shutdown
 ```
+
+Documentation
+-------------
+
+###TwiCmd Constructor
+`TwiCmd (parameters)`
+
+####tweeters
+
+An array of twitter ids who can trigger commands. Only direct tweets from these tweeters actually trigger commands.
+
+####Commands 
+An object representing the available commands. Each key will represent a command. Commands are invoked by using them in tweets as hashtags along with the invokingTag.
+
+**Example**
+
+```javascript
+{
+	restart: function () {/* … */}, 
+	stop: function () {/* … */} 
+	
+}
+```
+
+Triggering the restart command is done with the following tweet `#twicmd #restart` given that the invoking tag has not been changed.
+
+####ConsumerKey, ConsumerSecret, AccessTokenkey, AccessTokenSecret
+
+Used for authentication with Twitter's streaming API. For further details on generating these see Twitter's developer [documentation](https://dev.twitter.com/docs/auth/oauth#user-context).
+
+####Invokingtag
+
+The extra tag required to invoke a command besides the command tag. 
+
+**Default:** `#twicmd`
+
 
 License
 -------
