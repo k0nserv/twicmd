@@ -23,14 +23,14 @@ var TwiCmd  = require("twicmd"),
 	    consumerSecret: "Consumer secret here",
 	    accessTokenKey: "Access token here",
 	    accessTokenSecret: "Access Secret here",
-	    /
+
 	    //Tag needed to invoke a command besides the command tag
 	    //Defaults to #twicmd
 		invokingTag: "#myCustomInvokingTag"
 	})
 
 twicmd.addCommand("rs", function () {
-	console.log("Restart a service or something else")
+	console.log("Restart a service")
 });
 
 twicmd.start();
@@ -52,10 +52,12 @@ twicmd = new TwiCmd
                 consumerSecret: "Consumer secret here"
                 accessTokenKey: "Access token here"
                 accessTokenSecret: "Access Secret here"
+                #Tag needed to invoke a command besides the command tag
+	    		#Defaults to #twicmd
                 invokingTag: "#mycustominvokingtag"
 
 twicmd.addCommand "rs", () ->
-    #Restart something
+    console.log "Restart a service"
 
 twicmd.start()
 
