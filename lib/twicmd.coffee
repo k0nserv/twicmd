@@ -5,7 +5,7 @@ DEFAULT_PARAMETERS =
     interval: 30
 
 INVOKING_TAG = "#twicmd"
-HASH_REGEX   = ///(:?\W|^)\#([A-z0-9])+///g
+HASH_REGEX   = ///(?:\W|^)\#([A-z0-9]+)///g
 
 # Parameters:
 #   tweeters: An array of Tweeters to watch
@@ -14,7 +14,14 @@ HASH_REGEX   = ///(:?\W|^)\#([A-z0-9])+///g
 class TwiCmd
     #private
     handleData = (data) ->
-        console.log data
+        text = data.text
+
+        while match = HASH_REGEX.exec(text)
+            if match.length > 1
+                tag = match[1]
+                if (@commands.hasOwnProperty tag) and (_.isFunction @commands[tag])
+                    @commands[tag]()
+
 
     #public
     constructor: (parameters) ->
@@ -54,12 +61,17 @@ class TwiCmd
 
     start: () ->
         _follow = @tweeters.join ","
+        that = this
 
-        @stream = twitt.stream 'statuses/filter', { follow: _follow, track: INVOKING_TAG }, (stream) ->
+        @stream = @twitt.stream 'statuses/filter', { track: "breakingbad" }, (stream) ->
             @stream = stream
 
-            stream.on 'data', handleData.bind this
-
+            stream.on 'data', handleData.bind(that)
+            stream.on 'end', (response) ->
+                console.log "Oh noes end"
+            stream.on 'error', (error) ->
+               console.log "Oh noes error"
+               console.log error
 
     stop: () ->
 
