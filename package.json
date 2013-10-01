@@ -17,5 +17,6 @@
 	"dependencies": [
 		"underscore",
 		"twitter"
-	]
+	],
+	"main": "lib/twicmd.coffee"
 }
