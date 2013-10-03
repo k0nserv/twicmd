@@ -72,18 +72,18 @@ Documentation
 
 ####tweeters
 
-An array of twitter ids who can trigger commands. Only direct tweets from these tweeters actually trigger commands.
+An array of twitter ids who can trigger commands. Only direct tweets from these tweeters actually trigger commands. If the array is left empty twicmd runs in public mode were anyone can trigger commands, be careful with this.
 
-####Commands 
-An object representing the available commands. Each key will represent a command. Commands are invoked by using them in tweets as hashtags along with the invokingTag.
+####Commands
+An object representing the available commands. Each key will represent a command. Commands are invoked by using them in tweets as hashtags along with the invokingTag. The value of each key should be a function to run when the command is triggered.
 
 **Example**
 
 ```javascript
 {
-	restart: function () {/* … */}, 
-	stop: function () {/* … */} 
-	
+	restart: function () {/* … */},
+	stop: function () {/* … */}
+
 }
 ```
 
@@ -95,10 +95,9 @@ Used for authentication with Twitter's streaming API. For further details on gen
 
 ####Invokingtag
 
-The extra tag required to invoke a command besides the command tag. 
+The extra tag required to invoke a command besides the command tag.
 
 **Default:** `#twicmd`
-
 
 License
 -------
