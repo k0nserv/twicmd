@@ -19,8 +19,7 @@ class TwiCmd
             if match.length > 1
                 tag = match[1]
                 if (@commands.hasOwnProperty tag) and (_.isFunction @commands[tag])
-                    @commands[tag]() if _.contains @tweeters, data.user.id_str
-
+                    @commands[tag]() if (_.contains(@tweeters, data.user.id_str) or @tweeters.length == 0)
 
     #public
     constructor: (parameters) ->
@@ -43,7 +42,7 @@ class TwiCmd
             throw new TypeError "Consumer key, secret and Access token key and secret is required"
 
         if @tweeters.length == 0
-            throw new TypeError "Atleast one tweeter is required"
+            console.log "Warning: Running in public mode anyone can invoke commands"
 
 
         @twitt = new twitter
@@ -62,10 +61,15 @@ class TwiCmd
 
     start: () ->
         @running = true
-        _follow = @tweeters.join ","
         that = this
 
-        @stream = @twitt.stream 'statuses/filter', { track: @invokingTag, follow: _follow}, (stream) ->
+        opts = {}
+        opts.track = @invokingTag
+
+        if @tweeters.length > 0
+            opts.follow = @tweeters.join ","
+
+        @stream = @twitt.stream 'statuses/filter', opts, (stream) ->
             @stream = stream
 
             stream.on 'data', handleData.bind(that)
