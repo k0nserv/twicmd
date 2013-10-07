@@ -15,6 +15,8 @@ class TwiCmd
     handleData = (data) ->
         text = data.text
 
+        return if text.indexOf(@invokingTag) == -1
+
         while match = HASH_REGEX.exec(text)
             if match.length > 1
                 tag = match[1]
@@ -28,12 +30,6 @@ class TwiCmd
 
         @tweeters = _params.tweeters || []
         @commands = _params.commands || {}
-
-        @consumerKey    = _params.consumerKey
-        @consumerSecret = _params.consumerSecret
-
-        @accessTokenKey     = _params.accessTokenKey
-        @accessTokenSecret  = _params.accessTokenSecret
 
         @invokingTag = _params.invokingTag
 
