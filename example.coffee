@@ -1,14 +1,18 @@
 TwiCmd  = require("./twicmd.coffee")
+twitter = require("twitter")
 
-twicmd = new TwiCmd
-                tweeters: ["xxxxxxxxxxx"] #Numerical twitter ids
-                commands:
-                        test: ->    #Availiable command triggd by #test
-                            console.log "Test"
+twitt = new twitter
                 consumerKey: "Consumer key here"
                 consumerSecret: "Consumer secret here"
                 accessTokenKey: "Access token here"
                 accessTokenSecret: "Access Secret here"
+
+twicmd = new TwiCmd
+                tweetProvider: twitt
+                tweeters: ["xxxxxxxxxxx"] #Numerical twitter ids
+                commands:
+                        test: ->    #Availiable command triggd by #test
+                            console.log "Test"
                 invokingTag: "#mycustominvokingtag"
 
 twicmd.addCommand "rs", () ->

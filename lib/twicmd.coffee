@@ -1,5 +1,4 @@
 _ = require("underscore")
-twitter = require("twitter")
 
 DEFAULT_PARAMETERS =
     invokingTag: "#twicmd"
@@ -7,6 +6,7 @@ DEFAULT_PARAMETERS =
 HASH_REGEX   = ///(?:\W|^)\#([A-z0-9]+)///g
 
 # Parameters:
+#   tweetProvider: An instance of Twitter from the twitter module
 #   tweeters: An array of Tweeters to watch
 #   command: An object with command as keys and functions as values
 #   invokingTag: A tag which is required for events to trigger. Defaults to #twicmd
@@ -37,19 +37,13 @@ class TwiCmd
 
         @invokingTag = _params.invokingTag
 
-        if (_.isUndefined @consumerKey) or (_.isUndefined @consumerSecret) or
-           (_.isUndefined @accessTokenKey) or (_.isUndefined @accessTokenSecret)
-            throw new TypeError "Consumer key, secret and Access token key and secret is required"
-
         if @tweeters.length == 0
             console.log "Warning: Running in public mode anyone can invoke commands"
 
 
-        @twitt = new twitter
-                    consumer_key: @consumerKey
-                    consumer_secret: @consumerSecret
-                    access_token_key: @accessTokenKey
-                    access_token_secret: @accessTokenSecret
+        @twitt = _params.tweetProvider
+        if _.isUndefined @twitt
+            throw new TypeError "Tweetprovider must be provided"
 
         @running  = false
 
