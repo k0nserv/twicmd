@@ -11,23 +11,29 @@ Examples you say?
 ###Javascript
 
 ```javascript
-var TwiCmd  = require("twicmd"),
-	twicmd = new TwiCmd({
-		tweeters: ["xxxxxxxx"], //Numerical twitter ids
-		commands: {
-			test: function () { //Command triggered by #test
-				console.log("test");
-			}
-		},
-	    consumerKey: "Consumer key here",
-	    consumerSecret: "Consumer secret here",
-	    accessTokenKey: "Access token here",
-	    accessTokenSecret: "Access Secret here",
+var TwiCmd = require("twicmd"),
+	twitter = require("twitter"),
+	twicmd, twitt;
 
-	    //Tag needed to invoke a command besides the command tag
-	    //Defaults to #twicmd
-		invokingTag: "#myCustomInvokingTag"
-	})
+twitt = new twitter({
+	consumerKey: "Consumer key here",
+	consumerSecret: "Consumer secret here",
+	accessTokenKey: "Access token here",
+	accessTokenSecret: "Access Secret here"
+});
+
+twicmd = new TwiCmd({
+	tweetProvider: twitt,
+	tweeters: ["xxxxxxxx"], //Numerical twitter ids
+	commands: {
+		test: function () { //Command triggered by #test
+			console.log("test");
+		}
+	},
+    //Tag needed to invoke a command besides the command tag
+    //Defaults to #twicmd
+	invokingTag: "#myCustomInvokingTag"
+});
 
 twicmd.addCommand("rs", function () {
 	console.log("Restart a service")
@@ -42,18 +48,20 @@ setInterval(function() {},5000); //Prevent process shutdown
 
 ```Coffeescript
 TwiCmd  = require("twicmd")
+twitter = require("twitter")
 
-twicmd = new TwiCmd
-                tweeters: ["xxxxxxxxxxx"] #Numerical twitter ids
-                commands:
-                        test: ->    #Available command triggered by #test
-                            console.log "Test"
+twitt = new twitter
                 consumerKey: "Consumer key here"
                 consumerSecret: "Consumer secret here"
                 accessTokenKey: "Access token here"
                 accessTokenSecret: "Access Secret here"
-                #Tag needed to invoke a command besides the command tag
-	    		#Defaults to #twicmd
+
+twicmd = new TwiCmd
+                tweetProvider: twitt
+                tweeters: ["xxxxxxxxxxx"] #Numerical twitter ids
+                commands:
+                        test: ->    #Availiable command triggd by #test
+                            console.log "Test"
                 invokingTag: "#mycustominvokingtag"
 
 twicmd.addCommand "rs", () ->
