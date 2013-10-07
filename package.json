@@ -1,24 +1,28 @@
 {
-	"name": "twicmd",
-	"version": "0.0.3",
-	"author": {
-		"name": "Hugo Tunius"
-	},
-	"scripts": {
-		"test": "jasmine-node --coffee spec/"
-	},
-	"description": "Send commands to your server with twitter",
-	"keywords": [
-		"twitter",
-		"command",
-		"remote",
-		"server"
-	],
-	"license": "MIT",
-	"dependencies": [
-		"underscore",
-		"twitter",
-		"jasmine-node"
-	],
-	"main": "lib/twicmd.coffee"
+  "name": "twicmd",
+  "version": "0.0.3",
+  "author": "Hugo Tunius",
+  "scripts": {
+    "test": "jasmine-node --coffee spec/"
+  },
+  "description": "Send commands to your server with twitter",
+  "keywords": [
+    "twitter",
+    "command",
+    "remote",
+    "server"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "underscore": "",
+    "twitter": "",
+    "jasmine-node": ""
+  },
+  "main": "lib/twicmd.coffee",
+  "readmeFilename": "README.md",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:k0nserv/twicmd.git"
+  }
 }
