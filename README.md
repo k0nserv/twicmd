@@ -1,6 +1,6 @@
 TwiCmd
 ======
-TwiCmd is a small node module which enables triggering commands on a remote server using your public twitter stream. 
+TwiCmd is a small node module which enables triggering commands on a remote server using your public twitter stream.
 
 **Out hiking and need to restart nginx or run a script? Send a short Tweet**
 
@@ -16,10 +16,11 @@ TwiCmd is a small node module which enables triggering commands on a remote serv
 
 * Everyone has Twitter (almost)
 * Twitter is available on all platforms (almost)
-* Twitter is mobile 
+* Twitter is mobile
 * Twitter handles authentication
 * SSH access is not as mobile
 
+Twicmd is suggested to be used with the [twitter](https://npmjs.org/package/twitter) module for twitter API communication. Add it to your dependencies or install it using `npm install -g twitter`
 
 Examples
 -----------------
@@ -114,8 +115,8 @@ An object representing the available commands. Each key will represent a command
 Triggering the restart command is done with the following tweet `#twicmd #restart` given that the invoking tag has not been changed from the default.
 
 ####TweetProvider
-A tweet provider. The node module [twitter](https://npmjs.org/package/twitter) is suggested. 
-The tweet provider should provide a method called `stream` with the same signature as the `stream` method in the twitter module. 
+A tweet provider. The node module [twitter](https://npmjs.org/package/twitter) is suggested.
+The tweet provider should provide a method called `stream` with the same signature as the `stream` method in the twitter module.
 
 
 ####invokingTag
