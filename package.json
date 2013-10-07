@@ -5,6 +5,7 @@
 		"name": "Hugo Tunius"
 	},
 	"scripts": {
+		"test": "jasmine-node --coffee spec/"
 	},
 	"description": "Send commands to your server with twitter",
 	"keywords": [
