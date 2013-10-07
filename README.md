@@ -97,9 +97,8 @@ An object representing the available commands. Each key will represent a command
 
 Triggering the restart command is done with the following tweet `#twicmd #restart` given that the invoking tag has not been changed.
 
-####ConsumerKey, ConsumerSecret, AccessTokenkey, AccessTokenSecret
-
-Used for authentication with Twitter's streaming API. For further details on generating these see Twitter's developer [documentation](https://dev.twitter.com/docs/auth/oauth#user-context).
+####TweetProvider
+A tweet provider. The node module [twitter](https://npmjs.org/package/twitter) is suggested. The TweetProvider needs to provide a method called stream with the same signature as the stream method in the twitter module.
 
 ####Invokingtag
 
